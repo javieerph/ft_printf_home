@@ -6,26 +6,12 @@
 /*   By: ejavier- <ejavier-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 09:44:45 by ejavier-          #+#    #+#             */
-/*   Updated: 2025/05/01 11:52:28 by ejavier-         ###   ########.fr       */
+/*   Updated: 2025/05/01 13:01:49 by ejavier-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
-
-void ft_putchar(char c) {
-    write(1, &c, 1);
-}
-
-void ft_putnbr(int n) {
-    if (n < 0) {
-        ft_putchar('-');
-        n = -n;
-    }
-    if (n >= 10)
-        ft_putnbr(n / 10);
-    ft_putchar((n % 10) + '0');
-}
+#include "printf.h"
+#include "libft.h"
 
 int ft_printf(const char *format, ...) {
     va_list args;
@@ -34,10 +20,10 @@ int ft_printf(const char *format, ...) {
     while (*format) {
         if (*format == '%' && *(format + 1) == 'd') {
             int num = va_arg(args, int);
-            ft_putnbr(num);
+            ft_putnbr_fd(num, 1);
             format++;
         } else {
-            ft_putchar(*format);
+            ft_putchar_fd(*format, 1);
         }
         format++;
     }

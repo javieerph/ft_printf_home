@@ -6,7 +6,7 @@
 #    By: ejavier- <ejavier-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 10:33:43 by ejavier-          #+#    #+#              #
-#    Updated: 2025/05/01 11:26:17 by ejavier-         ###   ########.fr        #
+#    Updated: 2025/05/01 12:53:41 by ejavier-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = libftprintf.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+INCLUDES = -Ilibft
 
 SRCS = ft_printf.c
 OBJS = $(SRCS:.c=.o)
@@ -21,15 +22,25 @@ OBJS = $(SRCS:.c=.o)
 AR = ar rcs
 RM = rm -f
 
-all: $(NAME)
+LIBFT = libft/libft.a
+
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
+	$(MAKE) -C libft
 
 $(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+	$(AR) $(NAME) $(OBJS) libft/libft.a
 
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	
 clean:
 	$(RM) $(OBJS)
+	$(MAKE) -C libft clean
 
 fclean: clean
 	$(RM) $(NAME)
+	$(MAKE) -C libft fclean
 
 re: fclean all
