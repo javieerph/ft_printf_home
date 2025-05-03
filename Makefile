@@ -6,7 +6,7 @@
 #    By: ejavier- <ejavier-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 10:33:43 by ejavier-          #+#    #+#              #
-#    Updated: 2025/05/03 04:06:11 by ejavier-         ###   ########.fr        #
+#    Updated: 2025/05/03 07:34:24 by ejavier-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -Ilibft
 
-SRCS = ft_printf.c data_print.c data_type.c ft_itoa_base.c print_ptr.c
+SRCS = ft_printf.c data_print.c data_type.c ft_itoa_base.c print_ptr.c\
+print_hexa.c
 OBJS = $(SRCS:.c=.o)
 
 AR = ar rcs
@@ -28,6 +29,8 @@ all: $(LIBFT) $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C libft
+	cp libft/libft.a .
+	mv libft.a $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS) libft/libft.a

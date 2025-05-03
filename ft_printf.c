@@ -6,33 +6,32 @@
 /*   By: ejavier- <ejavier-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 09:44:45 by ejavier-          #+#    #+#             */
-/*   Updated: 2025/05/03 02:46:58 by ejavier-         ###   ########.fr       */
+/*   Updated: 2025/05/03 07:07:33 by ejavier-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "ft_printf.h"
 
-int ft_printf(const char *format, ...) 
+int	ft_printf(const char *format, ...)
 {
-    va_list args;
-    va_start(args, format);
-    int count;
-    
-    count = 0;
-    while (*format) 
-    {
-        if(*format == '%')
-        {
-            count += data_type(args, *(format + 1));
-            format += 2;
-        }
-        else
-        {
-            count += print_char(*format);
-            format++;
-        }
-    }
-    va_end(args);
-    return (count);
+	int		count;
+	va_list	args;
+
+	va_start(args, format);
+	count = 0;
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			count += data_type(args, *(format + 1));
+			format += 2;
+		}
+		else
+		{
+			count += print_char(*format);
+			format++;
+		}
+	}
+	va_end(args);
+	return (count);
 }
