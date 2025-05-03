@@ -6,7 +6,7 @@
 /*   By: ejavier- <ejavier-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:34:16 by ejavier-          #+#    #+#             */
-/*   Updated: 2025/05/03 07:36:37 by ejavier-         ###   ########.fr       */
+/*   Updated: 2025/05/03 08:40:59 by ejavier-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,13 @@ int	print_str(char *str)
 {
 	int	len;
 
+	if (!str)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
 	len = ft_strlen(str);
 	ft_putstr_fd(str, 1);
-	free(str);
 	return (len);
 }
 
