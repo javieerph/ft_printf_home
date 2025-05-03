@@ -6,7 +6,7 @@
 #    By: ejavier- <ejavier-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 10:33:43 by ejavier-          #+#    #+#              #
-#    Updated: 2025/05/01 12:53:41 by ejavier-         ###   ########.fr        #
+#    Updated: 2025/05/03 04:06:11 by ejavier-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -Ilibft
 
-SRCS = ft_printf.c
+SRCS = ft_printf.c data_print.c data_type.c ft_itoa_base.c print_ptr.c
 OBJS = $(SRCS:.c=.o)
 
 AR = ar rcs

@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ejavier- <ejavier-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 09:44:45 by ejavier-          #+#    #+#             */
-/*   Updated: 2025/05/03 02:46:58 by ejavier-         ###   ########.fr       */
+/*   Created: 2025/05/03 03:20:05 by ejavier-          #+#    #+#             */
+/*   Updated: 2025/05/03 03:46:47 by ejavier-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
 
-int ft_printf(const char *format, ...) 
+int print_ptr(void *ptr)
 {
-    va_list args;
-    va_start(args, format);
-    int count;
-    
-    count = 0;
-    while (*format) 
+    int len;
+    char *hex_str;
+
+    if (!ptr)
     {
-        if(*format == '%')
-        {
-            count += data_type(args, *(format + 1));
-            format += 2;
-        }
-        else
-        {
-            count += print_char(*format);
-            format++;
-        }
+        ft_putstr_fd("(nil)", 1);
+        return (5);
     }
-    va_end(args);
-    return (count);
+
+    ft_putstr_fd("0x", 1);
+
+    hex_str = ft_itoa_base((unsigned long)ptr, 16);
+    ft_putstr_fd(hex_str, 1);
+    
+    len = ft_strlen(hex_str) + 2;
+    free(hex_str);
+
+    return len;
 }
